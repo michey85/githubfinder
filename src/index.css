@@ -32,3 +32,7 @@ body {
 body[data-theme='dark'] {
   background-color: var(--gray-500);
 }
+
+a {
+  font-family: 'Space Mono', monospace;
+}

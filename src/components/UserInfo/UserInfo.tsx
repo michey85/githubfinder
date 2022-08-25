@@ -2,7 +2,7 @@ import { ReactComponent as CompanyIcon } from 'assets/icon-company.svg';
 import { ReactComponent as LocationIcon } from 'assets/icon-location.svg';
 import { ReactComponent as TwitterIcon } from 'assets/icon-twitter.svg';
 import { ReactComponent as BlogIcon } from 'assets/icon-website.svg';
-import { InfoItem } from 'components/InfoItem';
+import { InfoItem, InfoItemProps } from 'components/InfoItem';
 
 import classes from './UserInfo.module.scss';
 
@@ -19,7 +19,7 @@ export const UserInfo = ({
   location,
   twitter,
 }: UserInfoProps) => {
-  const items = [
+  const items: InfoItemProps[] = [
     {
       text: location,
       icon: <LocationIcon />,
@@ -27,6 +27,7 @@ export const UserInfo = ({
     {
       text: blog,
       icon: <BlogIcon />,
+      isLink: true,
     },
     {
       text: twitter,

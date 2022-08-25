@@ -18,9 +18,19 @@
   svg {
     fill: var(--info-color);
     margin-right: 1rem;
+    width: 20px;
   }
 
   &.empty {
     opacity: 0.75;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: var(--info-color);
+
+  &:hover {
+    text-decoration: underline;
   }
 }
