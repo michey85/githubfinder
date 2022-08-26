@@ -6,16 +6,18 @@ export interface UserTitleProps {
   created: string,
 }
 
+const localDate = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric'
+});
+
 export const UserTitle = ({
   login,
   name,
   created,
 }: UserTitleProps) => {
-  const joinedDate = new Intl.DateTimeFormat('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric'
-  }).format(new Date(created));
+  const joinedDate = localDate.format(new Date(created));
 
   return (
     <div className={classes.userTitle}>

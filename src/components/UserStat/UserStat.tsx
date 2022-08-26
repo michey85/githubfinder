@@ -6,7 +6,7 @@ export interface UserStatProps {
   following: number,
 }
 
-const UserStat = ({ repos, followers, following}: UserStatProps) => (
+const UserStat = ({ repos, followers, following }: UserStatProps) => (
   <div className={classes.userStat}>
     <div className={classes.info}>
       <div className={classes.infoTitle}>Repos</div>

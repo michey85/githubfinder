@@ -9,9 +9,7 @@ interface SearchProps {
 }
 
 type FormFields = {
-  username: {
-    value: string,
-  }
+  username: HTMLInputElement,
 }
 
 const Search = ({ hasError, onSubmit }: SearchProps) => {
