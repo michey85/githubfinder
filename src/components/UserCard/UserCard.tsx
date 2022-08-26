@@ -10,10 +10,22 @@ interface UserCardProps extends UserStatProps, UserTitleProps, UserInfoProps {
 
 const UserCard = (props: UserCardProps) => (
   <div className={classes.userCard}>
-    <img className={classes.avatar} src={props.avatar} alt={props.login} />
-    <UserTitle login={props.login} name={props.name} created={props.created} />
+    <img
+      className={classes.avatar}
+      src={props.avatar}
+      alt={props.login}
+    />
+    <UserTitle
+      login={props.login}
+      name={props.name}
+      created={props.created}
+    />
     <p className={`${classes.bio}${props.bio ? '' : ` ${classes.empty}`}`}>{props.bio || 'This profile has no bio'}</p>
-    <UserStat repos={props.repos} followers={props.followers} following={props.following} />
+    <UserStat
+      repos={props.repos}
+      followers={props.followers}
+      following={props.following}
+    />
     <UserInfo
       blog={props.blog}
       company={props.company}

@@ -1,31 +1,38 @@
-import React from 'react';
+import { useState } from 'react';
 
 import { Container } from 'components/Container';
 import { Search } from 'components/Search';
 import { TheHeader } from 'components/TheHeader';
 import { UserCard } from 'components/UserCard';
+import { GithubUser, GithubError, LocalGithubUser } from 'types';
+import { defaultUser } from 'mock';
+import { extractLocalUser, isGithubUser } from 'utils';
 
-const mockUser = {
-  "login": "michey85",
-  "avatar": "https://avatars.githubusercontent.com/u/36237995?v=4",
-  "name": "Mikhail Nepomnyashchiy",
-  "company": "EPAM",
-  "blog": "mishanep.com",
-  "location": "Malaga",
-  "bio": "React/Vue developer",
-  "twitter_username": "pcgramota",
-  "repos": 59,
-  "followers": 182,
-  "following": 5,
-  "created": "2018-02-07T16:18:45Z",
-};
+const BASE_URL = 'https://api.github.com/users/';
 
 function App() {
+  const [user, setUser] = useState<LocalGithubUser | null>(defaultUser);
+
+  const fetchUser = async (username: string) => {
+    const url = BASE_URL + username;
+
+    const res = await fetch(url);
+    const user = await res.json() as GithubUser | GithubError;
+
+    if (isGithubUser(user)) {
+      setUser(extractLocalUser(user));
+    } else {
+      setUser(null);
+    }
+  }
+
   return (
     <Container>
       <TheHeader />
-      <Search hasError onSubmit={() => {}} />
-      <UserCard {...mockUser} />
+      <Search hasError={!user} onSubmit={fetchUser} />
+      {user && (
+        <UserCard {...user} />
+      )}
     </Container>
   );
 }
